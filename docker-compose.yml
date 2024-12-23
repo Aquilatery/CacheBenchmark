@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:latest
+    ports:
+      - "6380:6380"
+    volumes:
+      - redis_data:/data
+    command: ["redis-server", "--appendonly", "yes", "--port", "6380"]
+
+  garnet:
+    image: ghcr.io/microsoft/garnet:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - garnet_data:/data
+
+  dragonfly:
+    image: docker.dragonflydb.io/dragonflydb/dragonfly:latest
+    ulimits:
+      memlock: -1
+    ports:
+      - "6381:6381"
+    volumes:
+      - dragonfly_data:/data
+    command: ["--port", "6381"]
+
+volumes:
+  redis_data:
+  garnet_data:
+  dragonfly_data:
