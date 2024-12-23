@@ -44,7 +44,7 @@ namespace CacheBenchmark
             garnetDb = garnetConnection.GetDatabase();
             dragonflyDb = dragonflyConnection.GetDatabase();
 
-            // 1KB veri
+            // 1KB data
             testValue = "test:value:" + new string('x', 1000);
         }
 
